@@ -14,7 +14,7 @@ class IndexController extends BaseController
     {
       $data = $request->validated();
       $filter = app()->make(ArticleFilter::class, ['queryParams' => array_filter($data)]);
-      $articles =Article::filter($filter)->paginate(5);
+      $published_articles =Article::filter($filter)->paginate(5);
   //      dd($published_articles);
 ////       dd($data);
 //       $query = Article::query();
@@ -29,8 +29,8 @@ class IndexController extends BaseController
 //        }
 //       $published_articles = $query->get();
 //        dd($published_articles);//?title=vitam
-       $published_articles = Article::where('is_published', 1)->paginate(5);
+ //      $published_articles = Article::where('is_published', 1)->paginate(5);
 
-        return view('article.index', compact('published_articles','articles'));
+        return view('article.index', compact('published_articles'));
     }
 }
