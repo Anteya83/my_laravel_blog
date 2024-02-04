@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Article;//импортируем класс контроллер
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,12 +35,13 @@ Route::group(['namespace' => '\App\Http\Controllers\Article'],function (){
 
 Route::get('/article', [ArticleController::class, 'showArticle'])->name('articles.index');//контролле и название функции
 
-Route::get('/article/update',[ArticleController::class, 'update']);
+Route::get('/admin',[AdminController::class, 'index']);
 Route::get('/article/delete',[ArticleController::class, 'delete']);
 Route::get('/article/first_or_create',[ArticleController::class, 'firstOrCreate']);
 Route::get('/article/update_or_create',[ArticleController::class, 'updateOrCreate']);
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
+
 
 
 Auth::routes();
