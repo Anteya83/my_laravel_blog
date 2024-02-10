@@ -12,6 +12,7 @@ class IndexController extends BaseController
 {
     public function __invoke(FilterRequest $request)//FilterRequest $request
     {
+
       $data = $request->validated();
       $filter = app()->make(ArticleFilter::class, ['queryParams' => array_filter($data)]);
       $published_articles =Article::filter($filter)->paginate(5);
