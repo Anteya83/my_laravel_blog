@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/my_page', function () {
     return 'this is my page';
 });
@@ -33,13 +33,10 @@ Route::group(['namespace' => '\App\Http\Controllers\Article'],function (){
 });
 
 
-Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin'],function (){
-
+Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin', 'middleware' => 'admin'],function (){
 
     Route::group(['namespace' => '\App\Http\Controllers\Admin\Article'],function (){
         Route::get('/article', 'IndexController')->name('admin.article.index');
-
-
     });
 
 });
