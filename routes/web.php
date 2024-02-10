@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
- //   return view('articles');
-//});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/my_page', function () {
     return 'this is my page';
 });
@@ -58,4 +56,4 @@ Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.in
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
