@@ -19,6 +19,7 @@ public function store($data) {
     //}
     //-----2 variant
     $article->tags()->attach($tags);
+    return $article;
 }
 public function update($article, $data){
     $tags = $data['tags'];
