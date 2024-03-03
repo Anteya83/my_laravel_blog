@@ -19,19 +19,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group([
-
+    'namespace' => '\App\Http\Controllers',
     'middleware' => 'api',
     'prefix' => 'auth'
 
 ], function ($router) {
 
-    Route::post('login', 'App\Http\Controllers\AuthController@login');
-    Route::post('logout', 'App\Http\Controllers\AuthController@logout');
-    Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
-    Route::post('me', 'App\Http\Controllers\AuthController@me');
+    Route::post('login', 'AuthController@login');
+    Route::post('logout','AuthController@logout');
+    Route::post('refresh','AuthController@refresh');
+    Route::post('me', 'AuthController@me');
 
 });
 
 Route::group(['namespace' => '\App\Http\Controllers\Article', 'middleware' => 'jwt.auth'], function (){
     Route::get('/articles', 'IndexController');
+    Route::get('/articles/create', 'CreateController');
+    Route::post('/articles', 'StoreController');
+    Route::get('/articles/{article}', 'ShowController');
+    Route::get('/articles/{article}/edit','EditController');
+    Route::patch('/articles/{article}','UpdateController');
+    Route::delete('/articles/{article}','DestroyController');
 });

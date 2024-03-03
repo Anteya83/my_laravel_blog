@@ -16,7 +16,7 @@ class StoreController extends BaseController
         $data = $request->validated();
 
         $article =$this->service->store($data);
-        return new ArticleResource($article);
+        return $article instanceof Article? new ArticleResource($article): $article;
         //dd($article);
 //        $tags = $data['tags']; перенесл всю логику в service.php
 //        unset($data['tags']);
